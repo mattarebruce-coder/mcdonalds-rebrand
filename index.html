@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mcdonalds — Nourish the Everyday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #5B9EC9;
+      --blue-dark:   #3D7EA6;
+      --blue-light:  #D6EAF5;
+      --blue-pale:   #EDF6FC;
+      --green:       #4A8C3F;
+      --green-light: #E8F5E4;
+      --green-mid:   #6BAE5E;
+      --red:         #D4443C;
+      --red-light:   #FAEAEA;
+      --cream:       #F7F4EE;
+      --cream-dark:  #EDE8DC;
+      --text:        #2C2C2C;
+      --muted:       #7A7A7A;
+      --light-muted: #A8A8A8;
+      --white:       #FFFFFF;
+      --radius:      16px;
+      --radius-lg:   24px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text);
+    }
+    .logo-bowl {
+      width: 42px; height: 42px;
+      position: relative;
+    }
+    .logo-bowl svg { width: 100%; height: 100%; }
+    .logo-text {}
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 600;
+      color: var(--text); line-height: 1;
+    }
+    .logo-tag {
+      font-size: 0.62rem; color: var(--muted); font-weight: 400;
+      letter-spacing: 0.5px; line-height: 1; margin-top: 2px;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      padding: 10px 22px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      border: none; transition: all 0.2s; text-decoration: none;
+      display: inline-block; font-family: 'Inter', sans-serif;
+    }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1.5px solid var(--cream-dark);
+    }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-primary {
+      background: var(--green); color: var(--white);
+    }
+    .btn-primary:hover { background: #3D7A32; transform: translateY(-1px); }
+    .btn-blue {
+      background: var(--blue); color: var(--white);
+    }
+    .btn-blue:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--cream);
+      padding: 90px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-light);
+      color: var(--green);
+      border-radius: 50px; padding: 6px 14px;
+      font-size: 0.75rem; font-weight: 600;
+      margin-bottom: 22px; letter-spacing: 0.3px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--green-mid); border-radius: 50%; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -1px; margin-bottom: 20px; color: var(--text);
+    }
+    h1 em { font-style: italic; color: var(--green); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 36px; max-width: 460px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-lg { padding: 15px 34px; font-size: 0.95rem; }
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-bowl-wrap {
+      width: 360px; height: 360px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 24px 80px rgba(91,158,201,0.18);
+      position: relative;
+    }
+    .hero-bowl-wrap svg { width: 260px; height: 260px; }
+    .hero-float {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      font-size: 0.8rem; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-float.f1 { top: 30px; right: -10px; }
+    .hero-float.f2 { bottom: 40px; left: -10px; }
+    .hero-float-icon { font-size: 1.2rem; }
+    .hero-float-label { color: var(--muted); font-weight: 400; font-size: 0.72rem; display: block; }
+    .hero-float-val { color: var(--text); font-weight: 700; font-size: 0.9rem; }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 48px; flex-wrap: wrap;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 700; color: var(--green); line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
+
+    /* ── SECTION SHELL ── */
+    .section-wrap { padding: 90px 48px; max-width: 1300px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 12px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; line-height: 1.15; letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    h2 em { font-style: italic; color: var(--green); }
+    .sub {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.65; max-width: 500px; margin-bottom: 52px;
+    }
+
+    /* ── PILLARS ── */
+    .pillars-bg { background: var(--cream); }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .pillar {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      border: 1px solid var(--cream-dark);
+    }
+    .pillar-icon {
+      width: 54px; height: 54px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 20px;
+    }
+    .pillar-icon.g { background: var(--green-light); }
+    .pillar-icon.b { background: var(--blue-light); }
+    .pillar-icon.r { background: var(--red-light); }
+    .pillar h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .pillar p  { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── MENU ── */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+    .menu-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      border: 1.5px solid var(--cream-dark);
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(74,140,63,0.12);
+      border-color: var(--green-mid);
+    }
+    .menu-img {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      background: var(--cream);
+    }
+    .menu-body { padding: 20px; }
+    .menu-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 5px;
+    }
+    .menu-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .menu-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
+    .menu-macros {
+      display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .macro {
+      font-size: 0.7rem; font-weight: 600;
+      background: var(--cream); color: var(--muted);
+      padding: 3px 8px; border-radius: 50px;
+    }
+    .macro.cal { background: var(--green-light); color: var(--green); }
+    .menu-footer { display: flex; align-items: center; justify-content: space-between; }
+    .menu-price { font-size: 1.15rem; font-weight: 800; color: var(--text); }
+    .menu-pts {
+      font-size: 0.72rem; font-weight: 700;
+      background: var(--blue-light); color: var(--blue);
+      border-radius: 50px; padding: 3px 10px;
+    }
+    .menu-btn {
+      background: var(--green); color: var(--white);
+      border: none; border-radius: 50px;
+      padding: 8px 18px; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .menu-btn:hover { background: #3D7A32; }
+
+    /* ── REWARDS ── */
+    .rewards-bg { background: var(--cream); }
+    .tier-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+      margin-bottom: 64px;
+    }
+    .tier-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 28px 22px; border: 2px solid transparent;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .tier-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+    .tier-card.t-seed   { border-color: #A8C8A0; }
+    .tier-card.t-sprout { border-color: var(--green-mid); }
+    .tier-card.t-bloom  { border-color: var(--blue); background: linear-gradient(145deg, #EDF6FC, #fff); }
+    .tier-card.t-harvest{ border-color: #C5860A; background: linear-gradient(145deg, #FEF9EE, #fff); }
+    .tier-badge {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 14px;
+    }
+    .t-seed   .tier-badge { background: #E8F5E4; }
+    .t-sprout .tier-badge { background: var(--green-light); }
+    .t-bloom  .tier-badge { background: var(--blue-light); }
+    .t-harvest .tier-badge { background: #FEF3D8; }
+    .tier-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
+    .t-seed   .tier-name { color: var(--green); }
+    .t-sprout .tier-name { color: #3D7A32; }
+    .t-bloom  .tier-name { color: var(--blue-dark); }
+    .t-harvest .tier-name { color: #C5860A; }
+    .tier-pts { font-size: 0.75rem; color: var(--muted); margin-bottom: 16px; }
+    .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .tier-perks li {
+      font-size: 0.78rem; color: var(--text);
+      display: flex; align-items: flex-start; gap: 7px; line-height: 1.4;
+    }
+    .tier-perks li::before {
+      content: '✓'; font-size: 0.65rem; font-weight: 700;
+      color: var(--green); margin-top: 2px; flex-shrink: 0;
+    }
+
+    /* ── WALLET ── */
+    .wallet-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .wallet-card {
+      background: linear-gradient(145deg, #4A8C3F, #5B9EC9);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      color: white; position: relative; overflow: hidden;
+    }
+    .wallet-card::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .wallet-card::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .wallet-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 600;
+      margin-bottom: 28px; position: relative; z-index: 1;
+    }
+    .wallet-pts-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; opacity: 0.75;
+      margin-bottom: 6px; position: relative; z-index: 1;
+    }
+    .wallet-pts-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem; font-weight: 700; line-height: 1;
+      margin-bottom: 4px; position: relative; z-index: 1;
+    }
+    .wallet-pts-sub { font-size: 0.8rem; opacity: 0.75; margin-bottom: 28px; position: relative; z-index: 1; }
+    .progress-bar {
+      height: 5px; background: rgba(255,255,255,0.25);
+      border-radius: 99px; margin-bottom: 8px; overflow: hidden; position: relative; z-index: 1;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 99px;
+      background: rgba(255,255,255,0.9);
+      width: 68%;
+      animation: fillBar 1.4s ease-out forwards;
+    }
+    @keyframes fillBar { from { width: 0; } to { width: 68%; } }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.7rem; opacity: 0.7; position: relative; z-index: 1;
+    }
+    .wallet-meta {
+      display: flex; justify-content: space-between;
+      margin-top: 24px; position: relative; z-index: 1;
+    }
+    .wallet-meta-item label {
+      font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
+      opacity: 0.65; display: block; margin-bottom: 3px;
+    }
+    .wallet-meta-item span { font-size: 0.9rem; font-weight: 700; }
+    .wallet-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 700; margin-bottom: 14px; line-height: 1.2;
+    }
+    .wallet-info p { color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
+    .redeem-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+    .redeem-list li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.88rem; font-weight: 500;
+    }
+    .redeem-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .step {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      border: 1.5px solid var(--cream-dark);
+      text-align: center;
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green-light); color: var(--green);
+      font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step-icon { font-size: 2rem; margin-bottom: 12px; }
+    .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .step p  { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── DEALS ── */
+    .deals-bg { background: var(--cream); }
+    .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+    .deal-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 22px; border: 1.5px solid var(--cream-dark);
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .deal-card:hover { border-color: var(--green-mid); box-shadow: 0 8px 24px rgba(74,140,63,0.1); }
+    .deal-emoji { font-size: 2.2rem; flex-shrink: 0; }
+    .deal-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 3px;
+    }
+    .deal-name { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .deal-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+    .deal-pts {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--green-light); color: var(--green);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 50px;
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--green) 0%, var(--blue) 100%);
+      border-radius: 28px; padding: 72px 48px;
+      text-align: center; color: white;
+      margin: 0 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.08); border-radius: 50%;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 180px; height: 180px;
+      background: rgba(255,255,255,0.05); border-radius: 50%;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem); color: white;
+      margin-bottom: 14px; position: relative; z-index: 1;
+    }
+    .cta-banner p { opacity: 0.85; margin-bottom: 32px; max-width: 440px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+    .cta-banner .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-white { background: white; color: var(--green); }
+    .btn-white:hover { background: var(--cream); }
+    .btn-outline-white { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream); border-top: 1px solid var(--cream-dark);
+      padding: 56px 48px 32px;
+    }
+    .footer-inner { max-width: 1300px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand p { color: var(--muted); font-size: 0.83rem; line-height: 1.65; margin-top: 14px; max-width: 260px; }
+    .footer-col h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 14px; }
+    .footer-col a  { display: block; color: var(--muted); font-size: 0.82rem; text-decoration: none; margin-bottom: 9px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom {
+      border-top: 1px solid var(--cream-dark); padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.35); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: 40px; width: 100%; max-width: 420px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.15);
+      position: relative;
+      animation: slideUp 0.25s ease-out;
+    }
+    @keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    .modal-close {
+      position: absolute; top: 16px; right: 18px;
+      background: var(--cream); border: none;
+      width: 30px; height: 30px; border-radius: 50%;
+      font-size: 1rem; cursor: pointer; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .modal p  { color: var(--muted); font-size: 0.85rem; margin-bottom: 26px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 7px; }
+    .form-group input {
+      width: 100%; padding: 11px 14px;
+      background: var(--cream); border: 1.5px solid var(--cream-dark);
+      border-radius: 10px; color: var(--text); font-size: 0.88rem;
+      outline: none; transition: border-color 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .form-group input:focus { border-color: var(--green); }
+    .modal-submit {
+      width: 100%; padding: 13px;
+      background: var(--green); color: var(--white);
+      border: none; border-radius: 50px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .modal-submit:hover { background: #3D7A32; }
+    .modal-success { display: none; text-align: center; padding: 16px 0; }
+    .modal-success .s-icon { font-size: 3rem; margin-bottom: 14px; }
+    .modal-success h3 { margin-bottom: 8px; }
+    .modal-success p { margin-bottom: 0; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 300;
+      background: var(--white); border: 1.5px solid var(--cream-dark);
+      border-radius: 14px; padding: 14px 18px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(80px); opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-icon { font-size: 1.2rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .tier-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .hero { grid-template-columns: 1fr; padding: 60px 32px; }
+      .hero-visual { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .section-wrap { padding: 60px 20px; }
+      .pillars { grid-template-columns: 1fr; }
+      .wallet-wrap { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .cta-banner { margin: 0 20px 60px; padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .tier-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--cream-dark); border-radius: 99px; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-bowl">
+      <!-- Inline salad bowl SVG matching the logo style -->
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bowl body -->
+        <ellipse cx="40" cy="52" rx="30" ry="16" fill="#5B9EC9" stroke="#3D2B1F" stroke-width="2"/>
+        <ellipse cx="40" cy="52" rx="30" ry="10" fill="#6BAED6"/>
+        <!-- Bowl rim -->
+        <ellipse cx="40" cy="42" rx="30" ry="7" fill="#E8F4FB" stroke="#3D2B1F" stroke-width="1.5"/>
+        <!-- Lettuce -->
+        <ellipse cx="28" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+        <ellipse cx="40" cy="32" rx="14" ry="9" fill="#6BBF5E" stroke="#3D2B1F" stroke-width="1.2"/>
+        <ellipse cx="52" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+        <!-- Tomatoes -->
+        <circle cx="30" cy="40" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+        <circle cx="44" cy="38" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+        <!-- Cucumber -->
+        <circle cx="56" cy="40" r="6" fill="#7DC66B" stroke="#3D2B1F" stroke-width="1.2"/>
+        <circle cx="56" cy="40" r="3" fill="#A8E09A" opacity="0.7"/>
+        <!-- M on bowl -->
+        <text x="40" y="57" text-anchor="middle" font-family="Playfair Display, serif" font-size="11" font-weight="600" fill="rgba(255,255,255,0.75)">M</text>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="logo-name">Mcdonalds</div>
+      <div class="logo-tag">Nourish the everyday</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#rewards">Rewards</a></li>
+    <li><a href="#deals">Deals</a></li>
+    <li><a href="#how">How It Works</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a class="btn btn-ghost" href="#" onclick="openModal('login'); return false;">Log In</a>
+    <a class="btn btn-primary" href="#" onclick="openModal('signup'); return false;">Join Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="background: var(--cream);">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge"><div class="hero-badge-dot"></div> New — Nourish Rewards 2.0 is live</div>
+      <h1>Real food.<br/><em>Real good.</em><br/>Every day.</h1>
+      <p class="hero-sub">
+        Fresh ingredients, bold flavors, and a rewards program that gives back with every bite. Because eating well shouldn't be a compromise.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#" onclick="openModal('signup'); return false;">Start Earning Free</a>
+        <a class="btn btn-ghost btn-lg" href="#menu">Explore the Menu</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">4.2M</div><div class="stat-label">Active Members</div></div>
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Locations</div></div>
+        <div class="stat"><div class="stat-num">$0</div><div class="stat-label">To Join</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-bowl-wrap">
+        <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Large bowl -->
+          <ellipse cx="130" cy="172" rx="95" ry="50" fill="#5B9EC9" stroke="#3D2B1F" stroke-width="3.5"/>
+          <ellipse cx="130" cy="172" rx="95" ry="33" fill="#6BAED6"/>
+          <ellipse cx="130" cy="140" rx="95" ry="22" fill="#E8F4FB" stroke="#3D2B1F" stroke-width="3"/>
+          <!-- Lettuce leaves -->
+          <ellipse cx="90" cy="120" rx="38" ry="28" fill="#5BA053" stroke="#3D2B1F" stroke-width="2.5"/>
+          <ellipse cx="130" cy="108" rx="44" ry="30" fill="#6BBF5E" stroke="#3D2B1F" stroke-width="2.5"/>
+          <ellipse cx="170" cy="120" rx="38" ry="28" fill="#5BA053" stroke="#3D2B1F" stroke-width="2.5"/>
+          <!-- Vein lines on lettuce -->
+          <path d="M130 112 Q118 124 110 136" stroke="#4A8C3F" stroke-width="1.2" opacity="0.5"/>
+          <path d="M130 112 Q142 124 150 136" stroke="#4A8C3F" stroke-width="1.2" opacity="0.5"/>
+          <!-- Tomato slices -->
+          <circle cx="100" cy="134" r="22" fill="#D4443C" stroke="#3D2B1F" stroke-width="2.5"/>
+          <circle cx="100" cy="134" r="14" fill="#E26059" opacity="0.5"/>
+          <circle cx="144" cy="128" r="22" fill="#D4443C" stroke="#3D2B1F" stroke-width="2.5"/>
+          <circle cx="144" cy="128" r="14" fill="#E26059" opacity="0.5"/>
+          <!-- Cucumber slices -->
+          <circle cx="178" cy="136" r="18" fill="#7DC66B" stroke="#3D2B1F" stroke-width="2.5"/>
+          <circle cx="178" cy="136" r="10" fill="#A8E09A" opacity="0.8"/>
+          <circle cx="73" cy="138" r="16" fill="#7DC66B" stroke="#3D2B1F" stroke-width="2.5"/>
+          <circle cx="73" cy="138" r="9" fill="#A8E09A" opacity="0.8"/>
+          <!-- M on bowl -->
+          <text x="130" y="182" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="28" font-weight="600" fill="rgba(255,255,255,0.75)">M</text>
+        </svg>
+      </div>
+      <div class="hero-float f1">
+        <span class="hero-float-icon">🌿</span>
+        <div>
+          <span class="hero-float-label">Today's pick</span>
+          <span class="hero-float-val">Harvest Bowl</span>
+        </div>
+      </div>
+      <div class="hero-float f2">
+        <span class="hero-float-icon">⭐</span>
+        <div>
+          <span class="hero-float-label">Your balance</span>
+          <span class="hero-float-val" id="heroPoints">3,420 pts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO VIDEO SECTION -->
+<div style="background:#1c2b1a; padding: 72px 48px;">
+  <div style="max-width:1300px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:32px;">
+      <div class="section-tag" style="color:#8ab84a;">Our Story</div>
+      <h2 style="color:#fff; font-family:'Playfair Display',serif;">Watch the <em style="color:#8ab84a; font-style:italic;">Rebrand</em></h2>
+      <p style="color:#a8c47a; max-width:480px; margin:12px auto 0; font-size:0.95rem; line-height:1.65;">See how we're reimagining fast food — one fresh ingredient at a time.</p>
+    </div>
+
+    <style>
+      #promo-stage {
+        width:100%; max-width:900px; aspect-ratio:16/9;
+        position:relative; overflow:hidden; margin:0 auto;
+        font-family:Georgia,serif; background:#f0ede4;
+        cursor:pointer; border-radius:20px;
+        box-shadow:0 32px 80px rgba(0,0,0,0.5);
+      }
+      .promo-scene {
+        position:absolute; inset:0;
+        display:flex; align-items:center; justify-content:center; flex-direction:column;
+        opacity:0; pointer-events:none; transition:opacity 0.7s ease;
+      }
+      .promo-scene.active { opacity:1; pointer-events:auto; }
+
+      #ps1 { background:#c8102e; }
+      #ps1 .old-m { font-size:clamp(80px,16vw,140px); font-weight:900; color:#FFC72C; font-family:'Arial Black',sans-serif; transform:scale(0.7); opacity:0; transition:transform 0.6s ease, opacity 0.6s ease; line-height:1; }
+      #ps1.active .old-m { transform:scale(1); opacity:1; }
+      #ps1 .old-tag { font-size:clamp(10px,2vw,18px); color:rgba(255,255,255,0.85); letter-spacing:4px; text-transform:uppercase; font-family:Arial,sans-serif; margin-top:10px; opacity:0; transition:opacity 0.5s ease 0.5s; }
+      #ps1.active .old-tag { opacity:1; }
+
+      #ps2 { background:#1c2b1a; }
+      #ps2 .pq { font-size:clamp(14px,3vw,30px); color:#a8c47a; text-align:center; line-height:1.6; padding:0 24px; opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease; }
+      #ps2.active .pq { opacity:1; transform:translateY(0); }
+      #ps2 .pq span { color:#fff; }
+
+      #ps3 { background:#f0ede4; }
+      #ps3 .pblob { position:absolute; top:-10%; left:-5%; width:45%; aspect-ratio:1; background:#8ab84a; border-radius:60% 40% 55% 45%; opacity:0; transform:scale(0.5); transition:opacity 0.6s ease, transform 0.6s ease; }
+      #ps3.active .pblob { opacity:1; transform:scale(1); }
+      #ps3 .plw { display:flex; flex-direction:column; align-items:center; z-index:2; opacity:0; transform:scale(0.75); transition:opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s; }
+      #ps3.active .plw { opacity:1; transform:scale(1); }
+      #ps3 .pbn { font-size:clamp(20px,5vw,48px); color:#3b3224; font-weight:700; margin-top:8px; font-family:'Playfair Display',serif; }
+      #ps3 .pbs { font-size:clamp(9px,1.8vw,16px); color:#7a6e5f; letter-spacing:2px; margin-top:4px; opacity:0; transition:opacity 0.5s ease 0.8s; font-family:Arial,sans-serif; }
+      #ps3.active .pbs { opacity:1; }
+
+      #ps4 { background:#f0ede4; flex-direction:row; gap:clamp(10px,3vw,32px); flex-wrap:wrap; justify-content:center; align-items:center; padding:12px; }
+      #ps4 .pbr { position:absolute; bottom:-15%; right:-8%; width:40%; aspect-ratio:1; background:#dce8c4; border-radius:50% 40% 60% 45%; }
+      .ppc { width:clamp(70px,14vw,120px); height:clamp(70px,14vw,120px); border-radius:50%; background:#4A8C3F; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid #3D7A32; opacity:0; transform:scale(0.5) rotate(-15deg); transition:opacity 0.4s ease, transform 0.4s ease; z-index:2; }
+      #ps4.active .ppc:nth-child(2){opacity:1;transform:scale(1) rotate(0);transition-delay:.1s}
+      #ps4.active .ppc:nth-child(3){opacity:1;transform:scale(1) rotate(0);transition-delay:.25s}
+      #ps4.active .ppc:nth-child(4){opacity:1;transform:scale(1) rotate(0);transition-delay:.4s}
+      #ps4.active .ppc:nth-child(5){opacity:1;transform:scale(1) rotate(0);transition-delay:.55s}
+      .ppc .ppi { font-size:clamp(18px,3.5vw,28px); line-height:1; }
+      .ppc .ppn { font-size:clamp(7px,1.3vw,11px); color:#fff; font-weight:700; margin-top:4px; text-align:center; font-family:Arial,sans-serif; padding:0 4px; }
+
+      #ps5 { background:#8ab84a; }
+      #ps5 .phl { font-size:clamp(26px,6vw,64px); font-weight:900; color:#1c2b1a; text-align:center; line-height:1.15; font-family:'Arial Black',sans-serif; padding:0 20px; opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease; }
+      #ps5.active .phl { opacity:1; transform:translateY(0); }
+      #ps5 .psl { font-size:clamp(10px,2vw,18px); color:#2d4a1e; letter-spacing:3px; text-transform:uppercase; font-family:Georgia,serif; margin-top:14px; opacity:0; transition:opacity 0.5s ease 0.6s; }
+      #ps5.active .psl { opacity:1; }
+      #ps5 .pls { position:absolute; top:14px; left:14px; display:flex; align-items:center; gap:8px; opacity:0; transition:opacity 0.5s ease 0.9s; }
+      #ps5.active .pls { opacity:1; }
+      #ps5 .pls svg { width:clamp(28px,5vw,44px); height:clamp(28px,5vw,44px); }
+      #ps5 .pls .pln { font-size:clamp(9px,1.6vw,14px); color:#1c2b1a; font-weight:700; font-family:Arial,sans-serif; letter-spacing:1px; }
+      #ps5 .pls .plt { font-size:clamp(7px,1.1vw,10px); color:#2d4a1e; font-family:Arial,sans-serif; letter-spacing:1px; }
+
+      #ppb { position:absolute; bottom:0; left:0; height:4px; background:rgba(255,255,255,0.7); width:0%; z-index:10; border-radius:0 2px 2px 0; }
+      #ppo { position:absolute; inset:0; background:rgba(28,43,26,0.75); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; z-index:20; border-radius:20px; }
+      #ppb2 { width:clamp(52px,10vw,80px); height:clamp(52px,10vw,80px); border-radius:50%; background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.7); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; }
+      #ppb2:hover { background:rgba(255,255,255,0.28); }
+      #ppb2 svg.play-icon { width:clamp(22px,4vw,34px); height:clamp(22px,4vw,34px); margin-left:5px; }
+      #ppl { color:#c8f07a; font-size:clamp(10px,1.8vw,14px); letter-spacing:3px; text-transform:uppercase; font-family:Arial,sans-serif; }
+      #prb { display:none; position:absolute; bottom:14px; right:14px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.5); color:#fff; padding:6px 16px; border-radius:20px; font-size:12px; cursor:pointer; z-index:10; font-family:Arial,sans-serif; }
+    </style>
+
+    <div id="promo-stage">
+      <!-- Scene 1: Old brand -->
+      <div class="promo-scene" id="ps1">
+        <div class="old-m">M</div>
+        <div class="old-tag">I'm lovin' it</div>
+      </div>
+      <!-- Scene 2: Question -->
+      <div class="promo-scene" id="ps2">
+        <div class="pq">What if fast food could<br><span>actually nourish you?</span></div>
+      </div>
+      <!-- Scene 3: New logo reveal -->
+      <div class="promo-scene" id="ps3">
+        <div class="pblob"></div>
+        <div class="plw">
+          <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(80px,18vw,160px);height:clamp(80px,18vw,160px);">
+            <ellipse cx="80" cy="104" rx="60" ry="32" fill="#5B9EC9" stroke="#3D2B1F" stroke-width="4"/>
+            <ellipse cx="80" cy="104" rx="60" ry="20" fill="#6BAED6"/>
+            <ellipse cx="80" cy="84" rx="60" ry="14" fill="#E8F4FB" stroke="#3D2B1F" stroke-width="3"/>
+            <ellipse cx="56" cy="72" rx="24" ry="16" fill="#5BA053" stroke="#3D2B1F" stroke-width="2.5"/>
+            <ellipse cx="80" cy="64" rx="28" ry="18" fill="#6BBF5E" stroke="#3D2B1F" stroke-width="2.5"/>
+            <ellipse cx="104" cy="72" rx="24" ry="16" fill="#5BA053" stroke="#3D2B1F" stroke-width="2.5"/>
+            <circle cx="60" cy="80" r="14" fill="#D4443C" stroke="#3D2B1F" stroke-width="2.5"/>
+            <circle cx="88" cy="76" r="14" fill="#D4443C" stroke="#3D2B1F" stroke-width="2.5"/>
+            <circle cx="112" cy="80" r="12" fill="#7DC66B" stroke="#3D2B1F" stroke-width="2.5"/>
+            <circle cx="112" cy="80" r="6" fill="#A8E09A" opacity="0.8"/>
+            <text x="80" y="114" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="22" font-weight="600" fill="rgba(255,255,255,0.8)">M</text>
+          </svg>
+          <div class="pbn">Mcdonalds</div>
+          <div class="pbs">Nourish the Everyday</div>
+        </div>
+      </div>
+      <!-- Scene 4: New menu items -->
+      <div class="promo-scene" id="ps4">
+        <div class="pbr"></div>
+        <div class="ppc"><div class="ppi">🥗</div><div class="ppn">Fresh Bowls</div></div>
+        <div class="ppc"><div class="ppi">🌯</div><div class="ppn">New Wraps</div></div>
+        <div class="ppc"><div class="ppi">🥤</div><div class="ppn">Smoothies</div></div>
+        <div class="ppc"><div class="ppi">✨</div><div class="ppn">New YOU!</div></div>
+      </div>
+      <!-- Scene 5: Final call to action -->
+      <div class="promo-scene" id="ps5">
+        <div class="pls">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="52" rx="30" ry="16" fill="#5B9EC9" stroke="#3D2B1F" stroke-width="2"/>
+            <ellipse cx="40" cy="52" rx="30" ry="10" fill="#6BAED6"/>
+            <ellipse cx="40" cy="42" rx="30" ry="7" fill="#E8F4FB" stroke="#3D2B1F" stroke-width="1.5"/>
+            <ellipse cx="28" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+            <ellipse cx="40" cy="32" rx="14" ry="9" fill="#6BBF5E" stroke="#3D2B1F" stroke-width="1.2"/>
+            <ellipse cx="52" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+            <circle cx="30" cy="40" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+            <circle cx="44" cy="38" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+            <circle cx="56" cy="40" r="6" fill="#7DC66B" stroke="#3D2B1F" stroke-width="1.2"/>
+            <text x="40" y="57" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" font-weight="600" fill="rgba(255,255,255,0.75)">M</text>
+          </svg>
+          <div><div class="pln">MCDONALDS</div><div class="plt">NOURISH THE EVERYDAY</div></div>
+        </div>
+        <div class="phl">Eat Healthy.<br>Live Healthy.<br>Be Healthy.</div>
+        <div class="psl">The new McDonald's — 2025</div>
+      </div>
+      <!-- Progress bar -->
+      <div id="ppb"></div>
+      <!-- Play overlay -->
+      <div id="ppo">
+        <div id="ppb2">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <div id="ppl">Play rebrand story</div>
+      </div>
+      <button id="prb">↩ replay</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const pScenes = [
+    {id:'ps1',dur:2000},{id:'ps2',dur:2000},{id:'ps3',dur:2200},{id:'ps4',dur:2300},{id:'ps5',dur:2500}
+  ];
+  const pTotal = pScenes.reduce((a,s)=>a+s.dur,0);
+  const pBar = document.getElementById('ppb');
+  const pOverlay = document.getElementById('ppo');
+  const pRb = document.getElementById('prb');
+  let pElapsed = 0, pRaf = null;
+
+  function pShow(i) {
+    pScenes.forEach((s,j) => document.getElementById(s.id).classList.toggle('active', i===j));
+  }
+  function pAnimBar(last) {
+    const now = performance.now();
+    pElapsed += now - last;
+    pBar.style.width = Math.min(pElapsed/pTotal*100,100)+'%';
+    if (pElapsed < pTotal) pRaf = requestAnimationFrame(t=>pAnimBar(t));
+    else pRb.style.display='block';
+  }
+  function pPlay() {
+    pOverlay.style.display='none';
+    pRb.style.display='none';
+    pElapsed=0; pBar.style.width='0%';
+    if(pRaf) cancelAnimationFrame(pRaf);
+    pScenes.forEach(s=>document.getElementById(s.id).classList.remove('active'));
+    let delay=0;
+    pScenes.forEach((s,i)=>{ setTimeout(()=>pShow(i), delay); delay+=s.dur; });
+    requestAnimationFrame(t=>{ pElapsed=0; pAnimBar(t); });
+  }
+  pOverlay.addEventListener('click', pPlay);
+  pRb.addEventListener('click', pPlay);
+})();
+</script>
+
+<!-- PILLARS -->
+<div class="pillars-bg">
+  <div class="section-wrap">
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon g">🥗</div>
+        <h3>Real Ingredients, Always</h3>
+        <p>No artificial flavors or colors. Every item on our menu is made with fresh, whole ingredients you can feel good about.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon b">💧</div>
+        <h3>Transparency You Can Trust</h3>
+        <p>Full nutrition info on every item. Calorie counts, macros, allergens — all on the menu. No guesswork, no surprises.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon r">❤️</div>
+        <h3>Rewards That Give Back</h3>
+        <p>Every GreenPoint™ you earn feeds someone in need. 1,000 points redeemed = one meal donated to our hunger-relief partner.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+  <div class="section-wrap">
+    <div class="section-tag">The Menu</div>
+    <h2>Crafted with <em>Fresh Intent</em></h2>
+    <p class="sub">Every item earns GreenPoints™. Every ingredient is chosen with care.</p>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-img">🥗</div>
+        <div class="menu-body">
+          <div class="menu-tag">Signature</div>
+          <div class="menu-name">The Harvest Bowl</div>
+          <div class="menu-desc">Kale, quinoa, roasted sweet potato, feta, pumpkin seeds, lemon tahini dressing.</div>
+          <div class="menu-macros">
+            <span class="macro cal">480 cal</span>
+            <span class="macro">22g protein</span>
+            <span class="macro">GF</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$10.99</div>
+              <div class="menu-pts">+220 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('Harvest Bowl', 220)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">🍔</div>
+        <div class="menu-body">
+          <div class="menu-tag">Fan Favorite</div>
+          <div class="menu-name">The GreenStack</div>
+          <div class="menu-desc">Grass-fed beef or plant patty, avocado, heirloom tomato, sprouts, chipotle aioli.</div>
+          <div class="menu-macros">
+            <span class="macro cal">560 cal</span>
+            <span class="macro">32g protein</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$9.49</div>
+              <div class="menu-pts">+190 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('GreenStack', 190)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">🍗</div>
+        <div class="menu-body">
+          <div class="menu-tag">Clean Protein</div>
+          <div class="menu-name">Herb-Grilled Chicken</div>
+          <div class="menu-desc">Free-range chicken, lemon herb marinade, roasted garlic, served with slaw.</div>
+          <div class="menu-macros">
+            <span class="macro cal">390 cal</span>
+            <span class="macro">42g protein</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$11.49</div>
+              <div class="menu-pts">+230 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('Herb-Grilled Chicken', 230)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">🥤</div>
+        <div class="menu-body">
+          <div class="menu-tag">Drinks</div>
+          <div class="menu-name">Green Vitality Smoothie</div>
+          <div class="menu-desc">Spinach, banana, mango, ginger, coconut water. No added sugar, no fillers.</div>
+          <div class="menu-macros">
+            <span class="macro cal">210 cal</span>
+            <span class="macro">Vegan</span>
+            <span class="macro">GF</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$5.49</div>
+              <div class="menu-pts">+110 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('Green Smoothie', 110)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">🍟</div>
+        <div class="menu-body">
+          <div class="menu-tag">Classic</div>
+          <div class="menu-name">Baked Sweet Potato Fries</div>
+          <div class="menu-desc">Oven-baked, sea salt, rosemary, served with house-made herb dipping sauce.</div>
+          <div class="menu-macros">
+            <span class="macro cal">290 cal</span>
+            <span class="macro">Vegan</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$4.49</div>
+              <div class="menu-pts">+90 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('Sweet Potato Fries', 90)">Add</button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">🍓</div>
+        <div class="menu-body">
+          <div class="menu-tag">Dessert</div>
+          <div class="menu-name">Açaí Berry Bowl</div>
+          <div class="menu-desc">Frozen açaí blend, fresh berries, granola, honey, chia seeds.</div>
+          <div class="menu-macros">
+            <span class="macro cal">340 cal</span>
+            <span class="macro">Vegan</span>
+            <span class="macro">GF</span>
+          </div>
+          <div class="menu-footer">
+            <div>
+              <div class="menu-price">$7.99</div>
+              <div class="menu-pts">+160 pts</div>
+            </div>
+            <button class="menu-btn" onclick="addToCart('Açaí Berry Bowl', 160)">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REWARDS TIERS -->
+<div class="rewards-bg" id="rewards">
+  <div class="section-wrap">
+    <div class="section-tag">Nourish Rewards</div>
+    <h2>Four Tiers.<br/><em>Endless Goodness.</em></h2>
+    <p class="sub">Every purchase earns GreenPoints™. Grow your tier for better perks, bigger freebies, and exclusive access.</p>
+    <div class="tier-grid">
+      <div class="tier-card t-seed">
+        <div class="tier-badge">🌱</div>
+        <div class="tier-name">Seed</div>
+        <div class="tier-pts">0 – 999 pts / year</div>
+        <ul class="tier-perks">
+          <li>1 pt per $1 spent</li>
+          <li>Birthday free item</li>
+          <li>Early deal access</li>
+          <li>Monthly bonus day</li>
+        </ul>
+      </div>
+      <div class="tier-card t-sprout">
+        <div class="tier-badge">🌿</div>
+        <div class="tier-name">Sprout</div>
+        <div class="tier-pts">1,000 – 4,999 pts / year</div>
+        <ul class="tier-perks">
+          <li>1.5 pts per $1 spent</li>
+          <li>Free drink monthly</li>
+          <li>Skip-the-line ordering</li>
+          <li>10% off every Tuesday</li>
+          <li>Monthly surprise reward</li>
+        </ul>
+      </div>
+      <div class="tier-card t-bloom">
+        <div class="tier-badge">🌸</div>
+        <div class="tier-name">Bloom</div>
+        <div class="tier-pts">5,000 – 14,999 pts / year</div>
+        <ul class="tier-perks">
+          <li>2× pts every order</li>
+          <li>Free item every month</li>
+          <li>Exclusive Bloom menu</li>
+          <li>Priority ordering lane</li>
+          <li>25% off combo upgrades</li>
+          <li>Early new menu access</li>
+        </ul>
+      </div>
+      <div class="tier-card t-harvest">
+        <div class="tier-badge">🌾</div>
+        <div class="tier-name">Harvest</div>
+        <div class="tier-pts">15,000+ pts / year</div>
+        <ul class="tier-perks">
+          <li>3× pts — always</li>
+          <li>Free meal every 2 weeks</li>
+          <li>Secret Harvest menu</li>
+          <li>Chef's table events</li>
+          <li>Dedicated support line</li>
+          <li>Annual harvest gift box</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WALLET -->
+    <div class="wallet-wrap">
+      <div class="wallet-card">
+        <div class="wallet-logo">
+          <svg width="22" height="22" viewBox="0 0 80 80" fill="none">
+            <ellipse cx="40" cy="52" rx="30" ry="16" fill="rgba(255,255,255,0.3)"/>
+            <ellipse cx="40" cy="42" rx="30" ry="7" fill="rgba(255,255,255,0.5)"/>
+            <ellipse cx="40" cy="32" rx="20" ry="12" fill="rgba(255,255,255,0.35)"/>
+          </svg>
+          Mcdonalds Rewards
+        </div>
+        <div class="wallet-pts-label">GreenPoints™ Balance</div>
+        <div class="wallet-pts-num" id="pointsDisplay">3,420</div>
+        <div class="wallet-pts-sub">Bloom Tier Member 🌸</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="progress-label">
+          <span>3,420 pts</span>
+          <span>5,000 for Bloom max</span>
+        </div>
+        <div class="wallet-meta">
+          <div class="wallet-meta-item"><label>Member Since</label><span>Jan 2024</span></div>
+          <div class="wallet-meta-item"><label>Tier</label><span>Bloom 🌸</span></div>
+          <div class="wallet-meta-item"><label>Expiry</label><span>Dec 2025</span></div>
+        </div>
+      </div>
+      <div class="wallet-info">
+        <h3>Your points work hard for you.</h3>
+        <p>Redeem GreenPoints™ for free food, wellness products, or donate meals to families through our charity partner.</p>
+        <ul class="redeem-list">
+          <li><div class="redeem-icon">🥗</div>500 pts — Free bowl of your choice</li>
+          <li><div class="redeem-icon">🥤</div>200 pts — Free smoothie or drink</li>
+          <li><div class="redeem-icon">🍟</div>150 pts — Free side item</li>
+          <li><div class="redeem-icon">🎁</div>1,000 pts — Exclusive wellness gift</li>
+          <li><div class="redeem-icon">❤️</div>Any pts — Donate a meal to someone in need</li>
+        </ul>
+        <a class="btn btn-primary btn-lg" href="#" onclick="openModal('signup'); return false;">Claim Your Points</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div id="how">
+  <div class="section-wrap">
+    <div class="section-tag">How It Works</div>
+    <h2>Three steps to <em>free food.</em></h2>
+    <p class="sub">No punch cards. No hidden expiry. Just straightforward rewards that grow with you.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">📲</div>
+        <h3>Join Free</h3>
+        <p>Create your account in under 60 seconds. No credit card. Get 200 welcome GreenPoints™ instantly.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">🛒</div>
+        <h3>Order & Earn</h3>
+        <p>Scan your QR code in-store or order in the app. Points post to your account automatically.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">🎉</div>
+        <h3>Redeem & Repeat</h3>
+        <p>Use points for free food, exclusive items, or mystery rewards. Then keep earning.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-icon">🌱</div>
+        <h3>Grow Your Tier</h3>
+        <p>Hit milestones to unlock Sprout, Bloom, and Harvest — each with better multipliers and bigger perks.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEALS -->
+<div class="deals-bg" id="deals">
+  <div class="section-wrap">
+    <div class="section-tag">Member Deals</div>
+    <h2>Today's <em>Fresh Offers</em></h2>
+    <p class="sub">Members-only deals that refresh daily. Log in to unlock them all.</p>
+    <div class="deals-grid">
+      <div class="deal-card">
+        <div class="deal-emoji">🔥</div>
+        <div>
+          <div class="deal-tag">Today Only</div>
+          <div class="deal-name">Double Points Wednesday</div>
+          <div class="deal-desc">Every order earns 2× GreenPoints™ all day, every Wednesday.</div>
+          <div class="deal-pts">🌿 2× Points</div>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-emoji">🥗</div>
+        <div>
+          <div class="deal-tag">Members</div>
+          <div class="deal-name">BOGO Harvest Bowl</div>
+          <div class="deal-desc">Buy one Harvest Bowl, get the second 50% off. In-store & app.</div>
+          <div class="deal-pts">🌿 380 pts bonus</div>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-emoji">🥤</div>
+        <div>
+          <div class="deal-tag">Flash Deal</div>
+          <div class="deal-name">Free Smoothie at Lunch</div>
+          <div class="deal-desc">Order any combo 11am–2pm and get a free smoothie. App only.</div>
+          <div class="deal-pts">🌿 Free Smoothie</div>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-emoji">☕</div>
+        <div>
+          <div class="deal-tag">Morning</div>
+          <div class="deal-name">$1 Cold Brew</div>
+          <div class="deal-desc">Any size organic cold brew just $1 before 10am, every day for members.</div>
+          <div class="deal-pts">🌿 50 pts</div>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-emoji">🎂</div>
+        <div>
+          <div class="deal-tag">Birthday Month</div>
+          <div class="deal-name">Free Birthday Meal</div>
+          <div class="deal-desc">Choose any item free during your entire birthday month.</div>
+          <div class="deal-pts">🌿 +500 pts gift</div>
+        </div>
+      </div>
+      <div class="deal-card">
+        <div class="deal-emoji">👥</div>
+        <div>
+          <div class="deal-tag">Referral</div>
+          <div class="deal-name">Refer a Friend</div>
+          <div class="deal-desc">You earn 500 pts, they get 200 welcome pts. Unlimited referrals.</div>
+          <div class="deal-pts">🌿 500 pts / referral</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Start nourishing <em style="font-style:italic; opacity:0.9;">yourself</em> today.</h2>
+  <p>Join 4.2 million members already eating better and earning rewards every single day.</p>
+  <div class="cta-actions">
+    <a class="btn btn-white btn-lg" href="#" onclick="openModal('signup'); return false;">Create Free Account</a>
+    <a class="btn btn-outline-white btn-lg" href="#menu">Browse the Menu</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#">
+          <div class="logo-bowl" style="width:36px; height:36px;">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="40" cy="52" rx="30" ry="16" fill="#5B9EC9" stroke="#3D2B1F" stroke-width="2"/>
+              <ellipse cx="40" cy="52" rx="30" ry="10" fill="#6BAED6"/>
+              <ellipse cx="40" cy="42" rx="30" ry="7" fill="#E8F4FB" stroke="#3D2B1F" stroke-width="1.5"/>
+              <ellipse cx="28" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+              <ellipse cx="40" cy="32" rx="14" ry="9" fill="#6BBF5E" stroke="#3D2B1F" stroke-width="1.2"/>
+              <ellipse cx="52" cy="36" rx="12" ry="8" fill="#5BA053" stroke="#3D2B1F" stroke-width="1.2"/>
+              <circle cx="30" cy="40" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+              <circle cx="44" cy="38" r="7" fill="#D4443C" stroke="#3D2B1F" stroke-width="1.2"/>
+              <circle cx="56" cy="40" r="6" fill="#7DC66B" stroke="#3D2B1F" stroke-width="1.2"/>
+              <text x="40" y="57" text-anchor="middle" font-family="Playfair Display, serif" font-size="11" font-weight="600" fill="rgba(255,255,255,0.75)">M</text>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <div class="logo-name" style="font-size:1.15rem;">Mcdonalds</div>
+            <div class="logo-tag">Nourish the everyday</div>
+          </div>
+        </a>
+        <p>Elevated, nourishing food with a rewards program that gives back. Eat well. Earn well. Live well.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a href="#">Bowls & Salads</a>
+        <a href="#">Burgers</a>
+        <a href="#">Protein Plates</a>
+        <a href="#">Drinks & Smoothies</a>
+        <a href="#">Desserts</a>
+      </div>
+      <div class="footer-col">
+        <h4>Rewards</h4>
+        <a href="#">How It Works</a>
+        <a href="#">Tier Benefits</a>
+        <a href="#">Redeem Points</a>
+        <a href="#">Refer a Friend</a>
+        <a href="#">Donate Meals</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Nutrition Info</a>
+        <a href="#">Careers</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Mcdonalds Inc. Nourish the everyday.</span>
+      <span>Privacy · Terms · Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SIGNUP MODAL -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signup')">✕</button>
+    <div id="signupForm">
+      <h3>Join Nourish Rewards</h3>
+      <p>Free account. 200 welcome GreenPoints™ added instantly.</p>
+      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Jane Smith" id="signupName" /></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com" id="signupEmail" /></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="At least 8 characters" /></div>
+      <button class="modal-submit" onclick="handleSignup()">Create Account — It's Free</button>
+    </div>
+    <div class="modal-success" id="signupSuccess">
+      <div class="s-icon">🌱</div>
+      <h3>Welcome to Mcdonalds!</h3>
+      <p style="color:var(--muted); margin-top:8px;">Your 200 GreenPoints™ are ready. Every bite gets you closer to free food.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <h3>Welcome Back</h3>
+    <p>Log in to your Nourish Rewards account.</p>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com" /></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="Your password" /></div>
+    <button class="modal-submit" onclick="handleLogin()">Log In</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">🌿</span>
+  <span id="toastMsg">Points added!</span>
+</div>
+
+<script>
+  let totalPoints = 3420;
+
+  function openModal(type) {
+    document.getElementById(type + 'Modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(type) {
+    document.getElementById(type + 'Modal').classList.remove('active');
+    document.body.style.overflow = '';
+    if (type === 'signup') {
+      document.getElementById('signupSuccess').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'block';
+    }
+  }
+  document.querySelectorAll('.modal-overlay').forEach(el => {
+    el.addEventListener('click', e => { if (e.target === el) { el.classList.remove('active'); document.body.style.overflow = ''; }});
+  });
+
+  function showToast(icon, msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastIcon').textContent = icon;
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  function addToCart(name, pts) {
+    totalPoints += pts;
+    const display = document.getElementById('pointsDisplay');
+    if (display) display.textContent = totalPoints.toLocaleString();
+    const hero = document.getElementById('heroPoints');
+    if (hero) hero.textContent = totalPoints.toLocaleString() + ' pts';
+    showToast('🌿', `+${pts} GreenPoints™ for ${name}!`);
+  }
+
+  function handleSignup() {
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    if (!name || !email) { showToast('⚠️', 'Please fill in all fields.'); return; }
+    totalPoints += 200;
+    const display = document.getElementById('pointsDisplay');
+    if (display) display.textContent = totalPoints.toLocaleString();
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('signupSuccess').style.display = 'block';
+  }
+
+  function handleLogin() {
+    closeModal('login');
+    showToast('👋', 'Welcome back! Your GreenPoints™ are ready.');
+  }
+</script>
+</body>
+</html>
